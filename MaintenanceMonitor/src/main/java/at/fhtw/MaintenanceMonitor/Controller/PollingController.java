@@ -33,5 +33,9 @@ public class PollingController {
 
     }
 
+    @GetMapping("/message/reset")
+    public @ResponseBody Map<String, String> resetStatus() {
+        return maintenanceMonitorService.resetStatus();
+    }
 
 }

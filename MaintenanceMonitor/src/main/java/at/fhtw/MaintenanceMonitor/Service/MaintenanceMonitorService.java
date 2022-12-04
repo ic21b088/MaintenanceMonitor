@@ -59,4 +59,16 @@ public class MaintenanceMonitorService {
         return resultMap;
     }
 
+    public Map<String, String> resetStatus() {
+        Map<String, String> resultMap = new HashMap<String, String>();
+        try {
+            statusMap.put("uptime", "99.95");
+            resultMap.put("status", "status message update successfully");
+        } catch (Exception e) {
+            resultMap.put("failure", "status message update failed");
+        }
+        return resultMap;
+    }
+
+
 }
