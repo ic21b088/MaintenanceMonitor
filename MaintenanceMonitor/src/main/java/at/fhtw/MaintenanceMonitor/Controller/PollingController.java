@@ -27,5 +27,11 @@ public class PollingController {
         return maintenanceMonitorService.message(uptimeInPercentage);
     }
 
+    @GetMapping("/message/deliver")
+    public @ResponseBody Map pollMessageStatus() {
+        return maintenanceMonitorService.pollMessageStatus();
+
+    }
+
 
 }

@@ -35,5 +35,28 @@ public class MaintenanceMonitorService {
         return resultMap;
     }
 
+    public Map<String, String> pollMessageStatus() {
+        Map<String, String> resultMap = new HashMap<String, String>();
+        String uptime = statusMap.get("uptime");
+        resultMap.put("lastUpdated", "last updated " + LocalTime.now().toString());
+        if(uptime!=null){
+            resultMap.put("uptime", Float.valueOf(uptime).toString());
+        }
+        else {
+            uptime="99.00";
+        }
+        int i = Float.valueOf(uptime).compareTo(Float.valueOf("99.95"));
+        if (i < 0) {
+            resultMap.put("statusMessage",  "Problem with web server maintenance until 06:00 UTC ");
+            resultMap.put("color", "red");
+        } else if (i == 0) {
+            resultMap.put("statusMessage",  "Reset to default");
+            resultMap.put("color", "white");
+        } else {
+            resultMap.put("statusMessage",  "Looks good");
+            resultMap.put("color", "green");
+        }
+        return resultMap;
+    }
 
 }
