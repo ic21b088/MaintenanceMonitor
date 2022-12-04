@@ -29,6 +29,14 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file MaintenanceMonitor/pom.xml
+    - name: copy to staging
+      run: mkdir staging && cp target/*.jar staging
+    - name: upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: Package
+        path: staging
+
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     #- name: Update dependency graph
